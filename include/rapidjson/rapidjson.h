@@ -306,7 +306,7 @@
     \c GenericValue uses this optimization to reduce its size form 24 bytes to 16 bytes in 64-bit architecture.
 */
 #ifndef RAPIDJSON_48BITPOINTER_OPTIMIZATION
-#if defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64)
+#if ( defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64) ) && !defined( _DEBUG ) // for easier debugging
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 1
 #else
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 0
@@ -406,9 +406,15 @@ RAPIDJSON_NAMESPACE_END
     \note Parsing errors are handled and can be customized by the
           \ref RAPIDJSON_ERRORS APIs.
 */
-#ifndef RAPIDJSON_ASSERT
-#include <cassert>
-#define RAPIDJSON_ASSERT(x) assert(x)
+#if !defined( RAPIDJSON_ASSERT ) && defined( NDEBUG )
+#define RAPIDJSON_ASSERT(x) ((void)0)
+#else
+#if __has_include(<Utils/Macros.h>)
+#include <Utils/Macros.h>
+#define RAPIDJSON_ASSERT(x) MB_ASSERT(x)
+#else
+#define RAPIDJSON_ASSERT(x) ((void)0)
+#endif
 #endif // RAPIDJSON_ASSERT
 
 ///////////////////////////////////////////////////////////////////////////////
