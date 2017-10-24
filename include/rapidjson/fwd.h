@@ -146,6 +146,10 @@ class GenericSchemaValidator;
 
 typedef GenericSchemaValidator<SchemaDocument, BaseReaderHandler<UTF8<char>, void>, CrtAllocator> SchemaValidator;
 
+// MB PATCH BEGIN
+using StringWriter = Writer< StringBuffer, UTF8< char >, UTF8< char >, CrtAllocator, 0 >;
+// MB PATH END
+
 RAPIDJSON_NAMESPACE_END
 
 #endif // RAPIDJSON_RAPIDJSONFWD_H_
