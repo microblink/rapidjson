@@ -1,6 +1,6 @@
 // Tencent is pleased to support the open source community by making RapidJSON available.
-//
-// Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.
+// 
+// Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip. All rights reserved.
 //
 // Licensed under the MIT License (the "License"); you may not use this file except
 // in compliance with the License. You may obtain a copy of the License at
@@ -332,7 +332,7 @@
     \c GenericValue uses this optimization to reduce its size form 24 bytes to 16 bytes in 64-bit architecture.
 */
 #ifndef RAPIDJSON_48BITPOINTER_OPTIMIZATION
-#if ( defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64) ) && !defined( _DEBUG ) // for easier debugging
+#if ( defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64) ) && defined( NDEBUG ) // for easier debugging
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 1
 #else
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 0
@@ -468,7 +468,7 @@ RAPIDJSON_NAMESPACE_END
 #if defined(__GNUC__) || defined(__clang__)
 #define RAPIDJSON_STATIC_ASSERT_UNUSED_ATTRIBUTE __attribute__((unused))
 #else
-#define RAPIDJSON_STATIC_ASSERT_UNUSED_ATTRIBUTE 
+#define RAPIDJSON_STATIC_ASSERT_UNUSED_ATTRIBUTE
 #endif
 #ifndef __clang__
 //!@endcond
