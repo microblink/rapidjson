@@ -1,5 +1,5 @@
 // Tencent is pleased to support the open source community by making RapidJSON available.
-// 
+//
 // Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip. All rights reserved.
 //
 // Licensed under the MIT License (the "License"); you may not use this file except
@@ -7,9 +7,9 @@
 //
 // http://opensource.org/licenses/MIT
 //
-// Unless required by applicable law or agreed to in writing, software distributed 
-// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
-// CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+// Unless required by applicable law or agreed to in writing, software distributed
+// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+// CONDITIONS OF ANY KIND, either express or implied. See the License for the
 // specific language governing permissions and limitations under the License.
 
 #ifndef RAPIDJSON_RAPIDJSON_H_
@@ -17,7 +17,7 @@
 
 /*!\file rapidjson.h
     \brief common definitions and configuration
-    
+
     \see RAPIDJSON_CONFIG
  */
 
@@ -246,7 +246,7 @@
 #  elif defined(RAPIDJSON_DOXYGEN_RUNNING)
 #    define RAPIDJSON_ENDIAN
 #  else
-#    error Unknown machine endianness detected. User needs to define RAPIDJSON_ENDIAN.   
+#    error Unknown machine endianness detected. User needs to define RAPIDJSON_ENDIAN.
 #  endif
 #endif // RAPIDJSON_ENDIAN
 
@@ -301,7 +301,7 @@
     \c GenericValue uses this optimization to reduce its size form 24 bytes to 16 bytes in 64-bit architecture.
 */
 #ifndef RAPIDJSON_48BITPOINTER_OPTIMIZATION
-#if ( defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64) ) && !defined( _DEBUG ) // for easier debugging
+#if ( defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64) ) && defined( NDEBUG ) // for easier debugging
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 1
 #else
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 0
@@ -437,7 +437,7 @@ RAPIDJSON_NAMESPACE_END
 #if defined(__GNUC__) || defined(__clang__)
 #define RAPIDJSON_STATIC_ASSERT_UNUSED_ATTRIBUTE __attribute__((unused))
 #else
-#define RAPIDJSON_STATIC_ASSERT_UNUSED_ATTRIBUTE 
+#define RAPIDJSON_STATIC_ASSERT_UNUSED_ATTRIBUTE
 #endif
 #ifndef __clang__
 //!@endcond
@@ -488,7 +488,7 @@ RAPIDJSON_NAMESPACE_END
 
 //!@cond RAPIDJSON_HIDDEN_FROM_DOXYGEN
 
-#define RAPIDJSON_MULTILINEMACRO_BEGIN do {  
+#define RAPIDJSON_MULTILINEMACRO_BEGIN do {
 #define RAPIDJSON_MULTILINEMACRO_END \
 } while((void)0, 0)
 
@@ -672,7 +672,7 @@ enum Type {
     kFalseType = 1,     //!< false
     kTrueType = 2,      //!< true
     kObjectType = 3,    //!< object
-    kArrayType = 4,     //!< array 
+    kArrayType = 4,     //!< array
     kStringType = 5,    //!< string
     kNumberType = 6     //!< number
 };
