@@ -301,7 +301,7 @@
     \c GenericValue uses this optimization to reduce its size form 24 bytes to 16 bytes in 64-bit architecture.
 */
 #ifndef RAPIDJSON_48BITPOINTER_OPTIMIZATION
-#if ( defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64) ) && defined( NDEBUG ) // for easier debugging
+#if defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64)
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 1
 #else
 #define RAPIDJSON_48BITPOINTER_OPTIMIZATION 0
