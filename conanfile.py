@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class RapidJSONConan(ConanFile):
     name = "RapidJSON"
-    version = "1.1.0"
+    version = "1.1.1"
     license = "BSD"
     url = "https://github.com/microblink/rapidjson"
     description = "A fast JSON parser/generator for C++ with both SAX/DOM style API"
