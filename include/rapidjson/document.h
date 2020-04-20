@@ -125,6 +125,15 @@ public:
     GenericMember& operator=(GenericMember&& rhs) RAPIDJSON_NOEXCEPT {
         return *this = static_cast<GenericMember&>(rhs);
     }
+
+// MB PATCH BEGIN
+    GenericMember(GenericValue<Encoding, Allocator> name, GenericValue<Encoding, Allocator> value) RAPIDJSON_NOEXCEPT
+        : name(std::move(name)),
+          value(std::move(value))
+    {
+    }
+// MB PATCH END
+
 #endif
 
     //! Assignment with move semantics.
