@@ -404,7 +404,10 @@ RAPIDJSON_NAMESPACE_END
 #if !defined( RAPIDJSON_ASSERT ) && defined( NDEBUG )
 #define RAPIDJSON_ASSERT(x) ((void)0)
 #else
-#if __has_include(<Utils/Macros.h>)
+#if __has_include(<LogAndTimer/Utils/Macros.hpp>)
+#include <LogAndTimer/Utils/Macros.hpp>
+#define RAPIDJSON_ASSERT(x) MB_ASSERT(x)
+#elif __has_include(<Utils/Macros.h>)
 #include <Utils/Macros.h>
 #define RAPIDJSON_ASSERT(x) MB_ASSERT(x)
 #else
