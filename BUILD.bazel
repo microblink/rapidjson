@@ -1,0 +1,43 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_license//rules:license.bzl", "license")
+
+package(
+    default_applicable_licenses = [":license"],
+)
+
+licenses(["notice"])  # MIT
+
+license(
+    name = "license",
+    license_kinds = ["@rules_license//licenses/spdx:MIT"],
+)
+
+cc_library(
+    name = "rapidjson",
+    srcs = glob(["include/rapidjson/internal/*.h"]),
+    hdrs = glob(
+        [
+            "include/rapidjson/**/*.h",
+        ],
+        exclude = [
+            "include/rapidjson/internal/*.h",
+        ],
+    ),
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "unittests",
+    srcs = glob([
+        "test/unittest/**/*.cpp",
+        "test/unittest/**/*.h",
+    ]),
+    data = glob(["bin/**/*"]),
+    local_defines = ["RAPIDJSON_HAS_STDSTRING"],
+    deps = [
+        ":rapidjson",
+        "@googletest//:gtest",
+    ],
+)
